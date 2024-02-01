@@ -19,7 +19,7 @@ The `Makefile` in the root folder of the repo provides the functionality to allo
 | Name | Default | Description | 
 | ---- | ------- | ----------- |
 | REGISTRY | docker.io | The container registry to push the images to. |
-| REPOSITORY | paulbouwer | The repository (or hierarchy) within the container registry where the image will be located. |
+| REPOSITORY | gmirsky | The repository (or hierarchy) within the container registry where the image will be located. |
 | IMAGE_VERSION | the version in src/app/package.json | The image version (label) to use for the built and pushed container images. |
 
 ### Targets
@@ -34,11 +34,11 @@ The `Makefile` in the root folder of the repo provides the functionality to allo
 You can build the `hello-kubernete` container image as follows:
 
 ```bash
-# Build the paulbouwer/hello-kubernetes:$version image
+# Build the gmirsky/hello-kubernetes:$version image
 make build-image-linux
 
-# Build the paulbouwer.azurecr.io/paulbouwer/hello-kubernetes:$version image
-export REGISTRY=paulbouwer.azurecr.io
+# Build the gmirsky.azurecr.io/gmirsky/hello-kubernetes:$version image
+export REGISTRY=gmirsky.azurecr.io
 make build-image-linux
 ```
 
@@ -47,23 +47,23 @@ make build-image-linux
 You can push your built `hello-kubernetes` container image to the defined registry as follows:
 
 ```bash
-# Push paulbouwer/hello-kubernetes:$version to docker hub.
+# Push gmirsky/hello-kubernetes:$version to docker hub.
 # Will tag $majorversion and $majorversion.$minorversion.
 #
 # Example: The container image will be tagged as follows for $version=1.10.0
-#   - paulbouwer/hello-kubernetes:1.10.0
-#   - paulbouwer/hello-kubernetes:1.10
-#   - paulbouwer/hello-kubernetes:1
+#   - gmirsky/hello-kubernetes:1.10.0
+#   - gmirsky/hello-kubernetes:1.10
+#   - gmirsky/hello-kubernetes:1
 make push-image
 
-# REGISTRY=paulbouwer.azurecr.io
-# Push paulbouwer.azurecr.io/paulbouwer/hello-kubernetes:$version to paulbouwer.azurecr.io.
+# REGISTRY=gmirsky.azurecr.io
+# Push gmirsky.azurecr.io/gmirsky/hello-kubernetes:$version to gmirsky.azurecr.io.
 # Will tag $majorversion and $majorversion.$minorversion.
 #
 # Example: The container image will be tagged as follows for $version=1.10.0
-#   - paulbouwer.azurecr.io/paulbouwer/hello-kubernetes:1.10.0
-#   - paulbouwer.azurecr.io/paulbouwer/hello-kubernetes:1.10
-#   - paulbouwer.azurecr.io/paulbouwer/hello-kubernetes:1
-export REGISTRY=paulbouwer.azurecr.io
+#   - gmirsky.azurecr.io/gmirsky/hello-kubernetes:1.10.0
+#   - gmirsky.azurecr.io/gmirsky/hello-kubernetes:1.10
+#   - gmirsky.azurecr.io/gmirsky/hello-kubernetes:1
+export REGISTRY=gmirsky.azurecr.io
 make push-image
 ```

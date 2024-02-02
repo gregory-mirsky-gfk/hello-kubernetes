@@ -14,7 +14,7 @@ build-images: build-image-linux
 
 .PHONY: build-image-linux
 build-image-linux: 
-	docker build --no-cache \
+	docker buildx build --platform linux/amd64 --no-cache \
 		--build-arg IMAGE_VERSION="$(IMAGE_VERSION)" \
 		--build-arg IMAGE_CREATE_DATE="`date -u +"%Y-%m-%dT%H:%M:%SZ"`" \
 		--build-arg IMAGE_SOURCE_REVISION="`git rev-parse HEAD`" \

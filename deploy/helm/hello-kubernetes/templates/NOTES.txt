@@ -1,0 +1,14 @@
+helm install --create-namespace \
+    --namespace k8s-test \
+    custom-message ./hello-kubernetes \
+    --set message='HA RKE2 Kubernetes'
+
+helm uninstall --namespace k8s-test custom-message  
+
+helm upgrade --install ingress-ingress ingress-nginx \
+    --repo https://kubernetes.github.io/ingress-nginx \
+    --namespace ingress-nginx \
+    --create-namespace \
+    --set controller.replicCount=6  \
+    --set tcp.8880="hello-kubernetes/hello-kubernetes-custom-message:80" 
+

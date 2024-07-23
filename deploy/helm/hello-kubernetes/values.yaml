@@ -12,18 +12,18 @@ service:
   port: 80
 
 deployment:
-  replicaCount: 2
+  replicaCount: 3
   container:
     image:
-      repository: "gmirsky/hello-kubernetes"
-      tag: "" # uses chart appVersion if not provided
+      repository: "vanapagan/hello-kubernetes"
+      tag: "1.11" # uses chart appVersion if not provided
       pullPolicy: IfNotPresent
     port: 8080
 
   # Currently only linux images on amd64 architecture are supported - support for arm64 and windows/amd64 coming ...
-  nodeSelector:
-    kubernetes.io/os: linux
-    kubernetes.io/arch: amd64
+  #nodeSelector:
+    #kubernetes.io/os: linux
+    #kubernetes.io/arch: amd64
 
   resources: {}
 

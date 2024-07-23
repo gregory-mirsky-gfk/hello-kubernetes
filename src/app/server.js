@@ -1,5 +1,5 @@
 const express = require('express');
-const exphbs  = require('express-handlebars');
+const exphbs = require('express-handlebars');
 const os = require("os");
 const fs = require('fs');
 
@@ -10,7 +10,7 @@ const expressLogger = expressPino({ logger });
 
 const app = express();
 app.use(expressLogger);
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 // Configuration
@@ -18,12 +18,12 @@ app.set('view engine', 'handlebars');
 var port = process.env.PORT || 8080;
 var message = process.env.MESSAGE || 'Hello world!';
 var renderPathPrefix = (
-  process.env.RENDER_PATH_PREFIX ? 
+  process.env.RENDER_PATH_PREFIX ?
     '/' + process.env.RENDER_PATH_PREFIX.replace(/^[\\/]+/, '').replace(/[\\/]+$/, '') :
     ''
 );
 var handlerPathPrefix = (
-  process.env.HANDLER_PATH_PREFIX ? 
+  process.env.HANDLER_PATH_PREFIX ?
     '/' + process.env.HANDLER_PATH_PREFIX.replace(/^[\\/]+/, '').replace(/[\\/]+$/, '') :
     ''
 );
@@ -61,14 +61,14 @@ app.use(handlerPathPrefix, express.static('static'))
 logger.debug('Handler: /');
 logger.debug('Serving from base path "' + handlerPathPrefix + '"');
 app.get(handlerPathPrefix + '/', function (req, res) {
-    res.render('home', {
-      message: message,
-      namespace: namespace,
-      pod: podName,
-      node: nodeName + ' (' + nodeOS + ')',
-      container: containerImage + ' (' + containerImageArch + ')',
-      renderPathPrefix: renderPathPrefix
-    });
+  res.render('home', {
+    message: message,
+    namespace: namespace,
+    pod: podName,
+    node: nodeName + ' (' + nodeOS + ')',
+    container: containerImage + ' (' + containerImageArch + ')',
+    renderPathPrefix: renderPathPrefix
+  });
 });
 
 // Server
